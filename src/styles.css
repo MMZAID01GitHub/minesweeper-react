@@ -1,9 +1,10 @@
 .my-buttons{
-    height: 50px;
-    width: 50px;
+    height: 100px;
+    width: 100px;
+    font-size:200%
 }
 .grid-container{
     display: grid;
-    grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 
+    grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 
 
 }
