@@ -15,7 +15,7 @@ export function Board(){
     return(
         <div className = "grid-container">
  
-            {getComponent(squares)}
+            {renderSquares(squares)}
             {/* <div>{renderSquare(0)}{renderSquare(0)}{renderSquare(0)}{renderSquare(0)}{renderSquare(0)}</div> */}
         
         </div>
@@ -36,10 +36,11 @@ export function Square(props){
     )
 }
    
-const renderSquare = (i)=> (<Square value = {i}/>)
-const getComponent = (arr) => {
+
+
+const renderSquares = (arr) => {
     return arr.map(value => (
-        <div>{renderSquare(value)}</div>
+        <div><Square value = {value}/></div>
     ))
 }
 
