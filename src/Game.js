@@ -2,29 +2,35 @@ import React, { useState } from 'react'
 import "./styles.css"
 
 export function Board(){
-  //  const[squares, setSquares] = useState(Array(9).fill(null));
+    const[squares, setSquares] = useState(Array(49).fill(0));
+    
     return(
-        <>
-            <div>{renderSquare()}{renderSquare()}{renderSquare()}{renderSquare()}{renderSquare()}</div>
-            <div>{renderSquare()}{renderSquare()}{renderSquare()}{renderSquare()}{renderSquare()}</div>
-            <div>{renderSquare()}{renderSquare()}{renderSquare()}{renderSquare()}{renderSquare()}</div>
-            <div>{renderSquare()}{renderSquare()}{renderSquare()}{renderSquare()}{renderSquare()}</div>
-            <div>{renderSquare()}{renderSquare()}{renderSquare()}{renderSquare()}{renderSquare()}</div>
-        </>
+        <div class = "grid-container">
+ 
+            {getComponent(squares)}
+            {/* <div>{renderSquare(0)}{renderSquare(0)}{renderSquare(0)}{renderSquare(0)}{renderSquare(0)}</div> */}
+        
+        </div>
+       
 
     )
 }
 
     
-export function Square(){
-    const[value, setValue] = useState(0);
+export function Square(props){
+    const[value, setValue] = useState(props.value);
     const incrementValue = () => setValue(value + 1);
     return (
         <button
-        style={{"height": "50px", "width":"50px"}}
+        class = "my-buttons"
         onClick={ incrementValue } 
         >{value}</button>
     )
 }
    
-const renderSquare = ()=> (<Square/>)
+const renderSquare = (i)=> (<Square value = {i}/>)
+const getComponent = (arr) => {
+    return arr.map(value => (
+        <div>{renderSquare(value)}</div>
+    ))
+}
