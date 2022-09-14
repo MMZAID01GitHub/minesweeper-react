@@ -3,12 +3,19 @@ import "./styles.css"
 
 export function Board(){
 
-    const[squares, setSquares] = useState(boardSetup());
+    const indices = Array(49);
+    for(var i = 0; i< indices.length; i++){
+        indices[i] = i;
+    }
+    const[realValues, setRealValues] = useState(boardSetup());
+    const[displayedValues, setDisplayedValues] = useState(Array(49).fill("?"));
+    const[mapping, setMapping] = useState(indices.map(function(index, first, second){ return [index, realValues[index], displayedValues[index]]}));
+    
     
     return(
         <div className = "grid-container">
  
-            {renderSquares(squares)}
+            {renderSquares(mapping)}
             {/* <div>{renderSquare(0)}{renderSquare(0)}{renderSquare(0)}{renderSquare(0)}{renderSquare(0)}</div> */}
         
         </div>
@@ -19,21 +26,22 @@ export function Board(){
 
     
 export function Square(props){
-    const[value, setValue] = useState(props.value);
-    const incrementValue = () => setValue(value + 1);
+    const[label, setLabel] = useState(props.displayValue);
+    const show = () => setLabel(props.realValue);
+    
     return (
         <button
         className = "my-buttons"
-        onClick={ incrementValue } 
-        >{value}</button>
+        onClick={ show } 
+        >{label}</button>
     )
 }
    
 
 
-const renderSquares = (arr) => {
-    return arr.map(value => (
-        <div><Square value = {value}/></div>
+const renderSquares = (mapping) => {
+    return Object.values(mapping).map(x => (
+        <div><Square displayValue = {x[2]} realValue = {x[1]} /></div>
     ))
 }
 
