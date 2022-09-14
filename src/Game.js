@@ -27,14 +27,18 @@ export function Board(){
     
 export function Square(props){
     const[label, setLabel] = useState(props.displayValue);
-    const show = () => setLabel(props.realValue);
+    const show = () => (setLabel(props.realValue));
+    const printMapping = () => console.log(props.mapping);
     
     return (
-        <button
-        className = "my-buttons"
-        style = {{color: (label == "X") ? 'red' : 'black'}}
-        onClick={ show } 
-        >{label}</button>
+        <>
+            <button
+            className = "my-buttons"
+            style = {{color: (label == "X") ? 'red' : 'black'}}
+            onClick={ show } 
+            >{label}</button>
+        </>
+        
     )
 }
    
@@ -42,7 +46,7 @@ export function Square(props){
 
 const renderSquares = (mapping) => {
     return Object.values(mapping).map(x => (
-        <div><Square displayValue = {x[2]} realValue = {x[1]} /></div>
+        <div><Square displayValue = {x[2]} realValue = {x[1]} mapping = {mapping} /></div>
     ))
 }
 
