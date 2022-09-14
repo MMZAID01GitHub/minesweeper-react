@@ -8,7 +8,7 @@ export function Board(){
         indices[i] = i;
     }
     const[realValues, setRealValues] = useState(boardSetup());
-    const[displayedValues, setDisplayedValues] = useState(Array(49).fill("?"));
+    const[displayedValues, setDisplayedValues] = useState(Array(49).fill(" "));
     const[mapping, setMapping] = useState(indices.map(function(index, first, second){ return [index, realValues[index], displayedValues[index]]}));
     
     
@@ -32,6 +32,7 @@ export function Square(props){
     return (
         <button
         className = "my-buttons"
+        style = {{color: (label == "X") ? 'red' : 'black'}}
         onClick={ show } 
         >{label}</button>
     )
